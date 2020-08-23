@@ -13,10 +13,10 @@
 			<label>First Name:</label>
 		 	{!! Form::text('first_name', null, array('class' => 'form-control', 'required'=>'required')) !!}
 		</div>
-		<div class=" col-md-4 form-group">
-			<label>Middle Name:</label>
-		 	{!! Form::text('middle_name', null, array('class' => 'form-control')) !!}
-		</div>
+{{--		<div class=" col-md-4 form-group">--}}
+{{--			<label>Middle Name:</label>--}}
+{{--		 	{!! Form::text('middle_name', null, array('class' => 'form-control')) !!}--}}
+{{--		</div>--}}
 		<div class=" col-md-4 form-group">
 			<label>Last Name:</label>
 		 	{!! Form::text('last_name', null, array('class' => 'form-control', 'required'=>'required')) !!}
@@ -70,7 +70,7 @@
 	    </div>
 		<div class=" col-md-4 form-group">
 			<label>Date of Birth:</label>
-			{!! Form::text('birth_date', null, array('class' => 'form-control' , 'id'=>'nepaliDate5')) !!}
+			{!! Form::text('birth_date', null, array('class' => 'form-control' , 'id'=>'datepicker')) !!}
 		</div>
 		<div class=" col-md-4 form-group">
 			<label>Age:</label>
@@ -89,18 +89,9 @@
 		 	{!! Form::text('country', 'Nepal', array('class' => 'form-control')) !!}
 		</div>
 		<div class=" col-md-4 form-group">
-			<label>State:</label>
-		 	{!! Form::text('state', 'Bagmati', array('class' => 'form-control')) !!}
-		</div>
-		<div class=" col-md-4 form-group">
 			<label>District:</label>
 		 	{!! Form::text('district', 'Kathmandu', array('class' => 'form-control')) !!}
 		</div>
-		<div class=" col-md-4 form-group">
-			<label>Location:</label>
-			{!! Form::textarea('location', null, array('class' => 'form-control','required'=>'required','size' => '5x3')) !!}
-		</div>
-		
 		<div class=" col-md-4 form-group">
 			<label>Occupation:</label>
 			{!! Form::textarea('occupation', null, array('class' => 'form-control', 'size' => '5x3')) !!}

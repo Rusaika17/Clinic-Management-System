@@ -38,8 +38,9 @@
 					        <th data-sortable="true">Name</th>
 					        <th data-sortable="true">Phone</th>
 					        <th data-sortable="true">Working Day</th>
-					        <th data-sortable="true">In-time</th>
-					        <th data-sortable="true">Out-time</th>
+					        <th data-sortable="true">NIC/Passport No</th>
+{{--					        <th data-sortable="true">In-time</th>--}}
+{{--					        <th data-sortable="true">Out-time</th>--}}
 					        <th data-sortable="true">Type</th>
 					        <th data-sortable="true">Action</th>
 						    </tr>
@@ -48,11 +49,12 @@
 				    	@foreach($employees as $employee)
 				        <tr>
 				            <td>{{ $employee->id}}</td>
-				            <td>{{$employee->first_name}} {{$employee->middle_name}} {{$employee->last_name}}</td>
+				            <td>{{$employee->first_name}} {{$employee->last_name}}</td>
 				           	<td>{{$employee->phone}}</td>
 				           	<td>{{$employee->working_day}}</td>
-				    		<td>{{$employee->in_time}}</td>
-				    		<td>{{$employee->out_time}}</td>
+				           	<td>{{$employee->nic}}</td>
+{{--				    		<td>{{$employee->in_time}}</td>--}}
+{{--				    		<td>{{$employee->out_time}}</td>--}}
 				    		<td>{{$employee->type}}</td>
 				            <td>
 				             <a class="btn btn-sm btn-primary glyphicon glyphicon-eye-open" href="{{ route('employee.show',$employee->id) }}"> Profile</a>

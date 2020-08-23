@@ -24,7 +24,8 @@ class DashboardController extends Controller
 
     public function index()
     {
-    	  $user = Auth::user()->id;
+
+        $user = Auth::user()->id;
       	$invoices = Invoice::where('user_id', $user)->whereDate('created_at', '=', date('Y-m-d'))->get();
         $patients = Patient::get();
         $appointments = Appointment::whereDate('appointment_date', '=', date('Y-m-d'))->get();

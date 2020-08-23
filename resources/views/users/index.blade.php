@@ -36,7 +36,7 @@
 					<tr>
 						<td>{{$user->name}}</td>
 						<td>{{$user->email}}</td>
-						<td>@if(count($user->role)){{$user->role->name}}@endif</td>
+						<td>{{$user->role_id}}</td>
 						<td><button style="margin-right: 5px" class="btn-sm btn-primary" id="edit_user" data-info =" {{$user->id}},{{$user->name}},{{$user->email}},{{$user->role_id}}"><span class="glyphicon glyphicon-edit "></span></button>
                         @if(Auth::user()->id == $user->id)
                         @else

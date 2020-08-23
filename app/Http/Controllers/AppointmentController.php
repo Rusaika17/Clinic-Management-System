@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Models\Appointment;
 use App\Models\Doctor;
@@ -19,6 +20,7 @@ class AppointmentController extends Controller
         $appointments = Appointment::get();
         $patients = Patient::get();
         $doctors = Doctor::get();
+//        $doctors = Employee::where('type','Doctor')->get();
         return view('appointments.index', compact('appointments','patients','doctors'));
         //
     }

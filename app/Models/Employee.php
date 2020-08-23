@@ -10,7 +10,7 @@ class Employee extends Model
 
 	protected $fillable = 
 	[
-        'first_name', 'middle_name', 'last_name','email', 'education', 'phone', 'description', 'certificate', 'speciality', 'address', 'working_day' , 'in_time' , 'out_time' ,
+        'first_name', 'middle_name', 'last_name','email', 'nic', 'phone', 'description', 'certificate', 'speciality', 'address', 'working_day' , 'in_time' , 'out_time' ,
         'type' , 'department_id'
     ];
 

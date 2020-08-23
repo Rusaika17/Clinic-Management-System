@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 use App\Models\Doctor;
 use App\Models\Department;
@@ -23,13 +24,20 @@ class doctorController extends Controller
     public function index()
     {
         $doctors = Doctor::all();
-        $employees = Employee::where('type', 'Doctor')->get();
+        $departments = Department::select('id','name')->get();
+//        $employees = Employee::where('type', 'Doctor')->get();
         //$days = explode(',',$doctors->working_day);
-        return view('doctors.index' , compact('doctors', 'employees'));
+        return view('doctors.index' , compact('doctors', 'departments'));
 
         //
     }
 
+
+    public function create()
+    {
+        $departments = Department::select('id','name')->get();
+        return view('doctors.create', compact('departments'));
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -38,21 +46,25 @@ class doctorController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, ['employee_id'=>'required']);
-        $data = $request->all(); 
-        
-        $tax = Hospital::first()->tax_percent;
+//        return $request->all();
 
-        if($request->with_tax) {
+        $this->validate($request, ['first_name'=>'required',
+            'last_name'=> 'required',
+            'email'=>'required|email|unique:employees',
+            'phone'=>'required|regex:/(0)[0-9]{9}/',
+            'working_day'=>'required',
+            'nic'=>'required',]);
 
-            $tax_cal = 100 + $tax;
-            $request['fee'] = $request->fee*100/$tax_cal;
-            $request['opd_charge'] = $request->opd_charge*100/$tax_cal;
+        if (count($request->working_day)) {
+            $request['working_day'] = implode(',',$request->working_day);
         }
-        //return $data;
+        $data = $request->all();
+        $data['first_name'] = 'DR.'.$request->first_name;
+
+//        return $data;
         Doctor::create($data);
-        return back()->with('success', 'Doctor saved Successfully.');
-        //
+//        return back()->with('success', 'Doctor saved Successfully.');
+        return redirect()->route('doctor.index')->with('success', 'Doctor saved Successfully.');
     }
     public function edit($id)
     {
@@ -82,9 +94,14 @@ class doctorController extends Controller
      */
     public function show($id)
     {
+        $s = date('D, d M Y');
         $doctor = Doctor::find($id);
-        $employees = Employee::get();
-        return view('doctors.profile', compact('doctor', 'employees'));
+//        return $doctor;
+        $departments = Department::select('id','name')->get();
+//        $employees = Employee::get();
+        $appointments = Appointment::where('doctor_id', $id)->get();
+//        return $appointments;
+        return view('doctors.profile', compact('doctor','departments','appointments', 's'));
         //
     }
 

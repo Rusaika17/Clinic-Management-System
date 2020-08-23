@@ -18,7 +18,6 @@ class UserController extends Controller
     {
         $users = User::get();
         $roles = Role::get();
-        //return $users;
         return view('users.index', compact('users', 'roles'));
     }
     /**

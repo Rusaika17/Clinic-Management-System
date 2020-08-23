@@ -33,25 +33,39 @@
 @endif
 
 <div class="row">
-<div class="col-lg-12">
+<div class="col-lg-12" style="padding: 5%;">
 <div class="panel panel-default">
 	<div class="panel-heading">{{$employee->first_name}} {{$employee->last_name}}
-		<a style="margin-left: 5px" class="btn btn-sm btn-primary pull-right" href="{{route('employee.edit', $employee->id)}}"><span class=" glyphicon glyphicon-edit"> </span>Edit Employee</a><a class="btn btn-sm btn-default pull-right" href="{{url('employee')}}">Back <span class="glyphicon glyphicon-share-alt"></span></a>
+		<a style="margin-left: 5px" class="btn btn-sm btn-primary pull-right" href="{{route('employee.edit', $employee->id)}}">
+			<span class=" glyphicon glyphicon-edit"> </span>Edit Employee
+		</a>
+		<a class="btn btn-sm btn-default pull-right" href="{{url('employee')}}">Back
+			<span class="glyphicon glyphicon-share-alt"></span>
+		</a>
 	</div>
 	<div class="panel-body">
 				<div class="col-md-6">
+					<b>Employee Type: {{$employee->type}}</b><br>
+					<b></b><br>
 					<b>Address: {{$employee->address}}</b><br>
+					<b></b><br>
 					<b>Phone: {{$employee->phone}}</b><br>
+					<b></b><br>
 					<label>Email: <a href="mail:to">{{$employee->email}}</a></label><br>
-					<label>Education: {{$employee->education}}</label><br>
-					<label>Description: {{$employee->description}}</label><br>
-					<label>Certificate: {{$employee->certificate}}</label><br>
-					<label>Speciality: {{$employee->spciality}}</label><br>
+					<b></b><br>
+
+{{--					<label>Certificate: {{$employee->certificate}}</label><br>--}}
+{{--					<label>Speciality: {{$employee->spciality}}</label><br>--}}
 				</div>
 				<div class="col-md-6">
+					<label>NIC/Passport No: {{$employee->nic}}</label><br>
+					<b></b><br>
+					<label>Description: {{$employee->description}}</label><br>
+					<b></b><br>
 				<label>Working Days: {{$employee->working_day}}</label><br>
-				<label>Available Time: {{$employee->in_time}} - {{$employee->out_time}}</label><br>
-				<label>Department: {{$employee->department->name}}</label><br>
+					<b></b><br>
+{{--				<label>Available Time: {{$employee->in_time}} - {{$employee->out_time}}</label><br>--}}
+{{--				<label>Department: {{$employee->department->name}}</label><br>--}}
 				
 				</div>
 	</div>

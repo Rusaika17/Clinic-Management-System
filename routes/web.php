@@ -57,7 +57,7 @@ Route::group(array('middleware'=>['auth']), function() {
 
 		Route::resource('employee', 'EmployeeController');
 		Route::resource('doctor', 'DoctorController');
-		Route::resource('doctor', 'DoctorController');
+//		Route::resource('doctor', 'DoctorController');
 		Route::resource('patient', 'PatientController');
 		Route::resource('appointment', 'AppointmentController');
 		Route::resource('role', 'RoleController');

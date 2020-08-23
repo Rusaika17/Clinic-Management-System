@@ -8,7 +8,8 @@ class Doctor extends Model
 {
 	protected $fillable = 
     [
-        'fee' , 'employee_id', 'opd_charge' ,
+        'first_name', 'middle_name', 'last_name','email', 'nic', 'phone', 'description', 'education', 'speciality', 'address', 'working_day' , 'in_time' , 'out_time' ,
+        'type' , 'department_id'
     ];
 
     public function appointments()
@@ -18,6 +19,10 @@ class Doctor extends Model
     public function employee()
     {
         return $this->belongsTo('App\Models\Employee');
+    }
+    public function department()
+    {
+        return $this->belongsTo('App\Models\Department');
     }
     public function opd_sales()
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 use App\Models\Employee;
 use App\Models\Department;
@@ -43,17 +44,20 @@ class EmployeeController extends Controller
     public function store(Request $request)
     {
 
-         $this->validate($request, ['department_id'=>'required|numeric']);
+        $this->validate($request,[
+            'first_name'=>'required',
+            'last_name'=> 'required',
+            'email'=>'required|email|unique:employees',
+            'phone'=>'required|regex:/(0)[0-9]{9}/',
+            'type'=>'required',
+            'working_day'=>'required',
+            'nic'=>'required',
+        ]);
          if (count($request->working_day)) {
              $request['working_day'] = implode(',',$request->working_day);
         }
         //serialize($request->working_day);
         $data = $request->all();
-        if($request->type == 'Doctor')
-        {
-            $data['first_name'] = 'DR.'.$request->first_name;
-        }
-        //return $data;
 
         Employee::create($data);
         return redirect()->route('employee.index')->with('success', 'Employee saved Successfully.');
@@ -69,14 +73,15 @@ class EmployeeController extends Controller
     public function show($id)
     {
         $employee = Employee::find($id);
-        $departments = Department::get();
-        return view('employees.profile', compact('employee', 'departments'));
+//        $departments = Department::get();
+        return view('employees.profile', compact('employee'));
         //
     }
 
     public function edit($id)
     {
         $employee = Employee::find($id);
+//        return $employee;
         $departments = Department::get();
         $working_day = explode(',', $employee->working_day);
         return view('employees.edit', compact('employee', 'departments', 'working_day'));
@@ -90,16 +95,16 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //return $request->all();
+//        return $request->all();
 
         $employee = Employee::find ( $id );
         if ($request->working_day) {
             $request['working_day'] = implode(',',$request->working_day);
         }
-        if($request->type == 'Doctor')
-        {
-            $request['first_name'] = 'DR.'.$request->first_name;
-        }
+//        if($request->type == 'Doctor')
+//        {
+//            $request['first_name'] = 'DR.'.$request->first_name;
+//        }
         $employee->update($request->all());
         $departments = Department::get();
          return redirect()->route('employee.index')->with('success', 'Employee Updated Successfully');
